@@ -13,7 +13,7 @@ def net0(host, port):
     data = s.recv(BUF_SZE).decode("utf-8")
     print("[*]Data: ", data)
 
-    # Find the numeric string, it can be variable length, so search between quotes
+    # Find the numeric string between quotes
     search = re.search("'(\d+)'", data)
     num = int(search.group(1))
     print("[*]Num: ", str(num))
