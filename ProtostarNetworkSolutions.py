@@ -3,12 +3,14 @@ from struct import *
 import os
 import re
 
+BUF_SZE = 1024
+
 
 def net0(host, port):
     s = socket(AF_INET, SOCK_STREAM)
     s.connect((host, port))
 
-    data = s.recv(1024).decode("utf-8")
+    data = s.recv(BUF_SZE).decode("utf-8")
     print("[*]Data: ", data)
 
     # Find the numeric string, it can be variable length, so search between quotes
@@ -19,7 +21,7 @@ def net0(host, port):
     # Convert the number to little endian format and send it back
     little = pack("<I", num)
     s.send(little)
-    print("[*]Ans: ", s.recv(1024).decode("utf-8"))
+    print("[*]Ans: ", s.recv(BUF_SZE).decode("utf-8"))
     s.close()
 
 
